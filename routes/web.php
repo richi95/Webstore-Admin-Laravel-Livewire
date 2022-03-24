@@ -20,9 +20,17 @@ Route::group(['prefix'=>'admin'], function(){
         return view('admin.login');
     });
 
-    Route::get('/dashboard', function (){
-        return view('admin.dashboard');
-    });
+        Route::group(['middleware'=>['admin']], function(){
+
+            Route::get('/dashboard', function () {
+                return view('admin.dashboard');
+            });
+
+            Route::get('/settings/general', function (){
+                return view('admin.settings.general');
+            })->name('admin.settings.general');
+
+        });
 
 });
 

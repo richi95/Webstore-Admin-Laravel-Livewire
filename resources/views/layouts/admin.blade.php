@@ -238,20 +238,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="fas fa-gears nav-icon"></i>
+                <a href="{{route('admin.settings.general')}}" class="nav-link">
+                  <i class="fas fa-cogs nav-icon"></i>
                   <p>Általános</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="fas fa-meta nav-icon"></i>
+                  <i class="fas fa-code nav-icon"></i>
                   <p>Meta adatok</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-circle-nodes nav-icon"></i>
+                  <i class="fas fa-envelope nav-icon"></i>
                   <p>Kapcsolat oldal</p>
                 </a>
               </li>
@@ -280,12 +280,7 @@
                   <p>Listázás</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-pen nav-icon"></i>
-                  <p>Szerkesztés</p>
-                </a>
-              </li>
+             
              
             </ul>
           </li>
@@ -298,6 +293,23 @@
                 {{-- <span class="badge badge-info right">6</span> --}}
               </p>
             </a>
+
+
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="pages/layout/top-nav.html" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Felvétel</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                  <i class="fas fa-list nav-icon"></i>
+                  <p>Listázás</p>
+                </a>
+              </li>
+            </ul>
+
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -321,13 +333,6 @@
                   <p>Listázás</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-ban nav-icon"></i>
-                  <p>Törlés</p>
-                </a>
-              </li>
-             
             </ul>
           </li>
           <li class="nav-item">
@@ -340,20 +345,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+              <li class="nav-item">
+                <a href="pages/layout/top-nav.html" class="nav-link">
+                  <i class="fas fa-plus nav-icon"></i>
+                  <p>Felvétel</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Listázás</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="fas fa-ban nav-icon"></i>
-                  <p>Törlés</p>
-                </a>
-              </li>
-             
             </ul>
           </li>
 
