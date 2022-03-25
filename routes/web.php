@@ -30,6 +30,8 @@ Route::group(['prefix'=>'admin'], function(){
                 return view('admin.settings.general');
             })->name('admin.settings.general');
 
+            Route::post('/settings/general', [SettingController::class,'general']);
+
         });
 
 });
