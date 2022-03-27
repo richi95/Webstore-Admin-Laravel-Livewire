@@ -227,7 +227,8 @@
             </ul>
           </li> --}}
 
-          <li class="nav-item">
+          {{--  --}}
+          <li class="nav-item" id="settingsmenu">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
@@ -238,13 +239,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('admin.settings.general')}}" class="nav-link">
+                <a href="{{route('admin.settings', [
+                  'option'=>'general'
+                ])}}" class="nav-link">
                   <i class="fas fa-cogs nav-icon"></i>
                   <p>Általános</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{route('admin.settings', [
+                  'option'=>'meta'
+                ])}}" class="nav-link">
                   <i class="fas fa-code nav-icon"></i>
                   <p>Meta adatok</p>
                 </a>
@@ -258,7 +263,7 @@
              
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="categoriesmenu">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>
               <p>
@@ -284,7 +289,7 @@
              
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="productsmenu">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-box-open"></i>
               <p>
@@ -972,6 +977,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
+
     @yield('content')
   <!-- /.content-wrapper -->
 
@@ -1015,5 +1021,16 @@
 <script src="/adminfiles/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/adminfiles/dist/js/pages/dashboard2.js"></script>
+
+@isset( $openmenu )
+  <script>
+    const elem = document.querySelector('{{ $openmenu }}');
+    elem.classList.add('menu-is-opening');
+    elem.classList.add('menu-open');
+
+    document.querySelector('{{ $openmenu }} > a').classList.add('active');
+  </script>
+@endisset
+
 </body>
 </html>

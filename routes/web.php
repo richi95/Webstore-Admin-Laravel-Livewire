@@ -2,6 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SettingController;
+use App\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +28,19 @@ Route::group(['prefix'=>'admin'], function(){
                 return view('admin.dashboard');
             });
 
-            Route::get('/settings/general', function (){
-                return view('admin.settings.general');
-            })->name('admin.settings.general');
+            Route::get('/settings/{option}', function ($option){
+                $title=[
+                    'general'=>'Általános beállítások',
+                    'meta'=>'Meta adatok'
+                ];
+ 
+                return view('admin.settings.'.$option, [
+                    'openmenu' => '#settingsmenu',
+                    'title'=>$title[$option]
+                ]);
+            })->name('admin.settings');
 
-            Route::post('/settings/general', [SettingController::class,'general']);
+            Route::post('/settings/store', [SettingController::class,'store'])->name('admin.post.settings.store');
 
         });
 
