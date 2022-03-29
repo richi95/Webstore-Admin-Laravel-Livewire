@@ -255,7 +255,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="{{route('admin.settings', [
+                  'option'=>'contact'
+                ])}}" class="nav-link">
                   <i class="fas fa-envelope nav-icon"></i>
                   <p>Kapcsolat oldal</p>
                 </a>
@@ -274,7 +276,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{route('admin.categories.add')}}" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Felvétel</p>
                 </a>

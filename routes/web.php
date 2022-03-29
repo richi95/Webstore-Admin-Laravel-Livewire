@@ -2,8 +2,8 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\SettingController;
-use App\Models\Setting;
+use App\Http\Controllers\Admin\SettingController, App\Http\Controllers\Admin\CategoryController;
+use App\Models\Setting, App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,8 @@ Route::group(['prefix'=>'admin'], function(){
             Route::get('/settings/{option}', function ($option){
                 $title=[
                     'general'=>'Általános beállítások',
-                    'meta'=>'Meta adatok'
+                    'meta'=>'Meta adatok',
+                    'contact'=>'Kapcsolat oldal'
                 ];
  
                 return view('admin.settings.'.$option, [
@@ -41,6 +42,18 @@ Route::group(['prefix'=>'admin'], function(){
             })->name('admin.settings');
 
             Route::post('/settings/store', [SettingController::class,'store'])->name('admin.post.settings.store');
+
+            // --------------------------------
+
+
+            Route::get('/categories/add', function (){
+                return view('admin.categories.add')->with('categories', Category::all());
+            })->name('admin.categories.add');
+
+            Route::post('/categories/store', [CategoryController::class,'store'])->name('admin.post.categories.store');
+
+
+
 
         });
 
