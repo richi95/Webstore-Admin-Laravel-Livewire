@@ -10,7 +10,7 @@
 
             <option value=""> {{ __('Válassz') }} </option>
             @foreach ($options as $key => $val)
-                <option value="{{ $key }}" {{ old($id) == $key ? 'selected' : '' }}>{{ $val }}
+                <option value="{{ $key }}" {{ old($id, @$item->$id ) == $key ? 'selected' : '' }}>{{ $val }}
                 </option>
             @endforeach
 

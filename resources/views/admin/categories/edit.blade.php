@@ -33,7 +33,9 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.categories.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.post.categories.edit', [
+                                'category'=>$item->id
+                            ]) }}" method="post" enctype="multipart/form-data">
                                 @method('POST')
                                 @csrf
 
@@ -56,6 +58,25 @@
                                         'value' => '',
                                         'params' => null,
                                     ])
+
+                                    <div class="form-group row px-5">
+
+                                        <div class="col-md-6">
+                                            <label  class="col">Jelenlegi kép</label>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <img src="{{ url($item->file ? '/storage/'.$item->file : 'adminfiles/dist/img/noimg.png')}}" alt="" width="50%">
+                                        </div>
+                                    </div>
+
+                                    @include('admin.includes.form.checkbox', [
+                                        'id' => 'delete_img',
+                                        'label' => 'Kép törlése',
+                                        'params' => null,
+                                    ])
+
+
 
                                     @include('admin.includes.form.input', [
                                         'id' => 'file',

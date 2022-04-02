@@ -19,9 +19,9 @@ class CreateCategoriesTable extends Migration
             $table->string('name',255);
             $table->string('file',255)->nullable(); 
             $table->string('slug',255);
-            $table->string('seo_title',255);
-            $table->string('seo_description',255);
-            $table->string('seo_keywords',255);
+            $table->string('seo_title',255)->nullable();
+            $table->string('seo_description',255)->nullable();
+            $table->string('seo_keywords',255)->nullable();
             $table->timestamps();
         });
     }

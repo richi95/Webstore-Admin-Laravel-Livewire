@@ -282,7 +282,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{route('admin.categories.list')}}" class="nav-link">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Listázás</p>
                 </a>
@@ -318,7 +318,7 @@
             </ul>
 
           </li>
-          <li class="nav-item">
+          <li class="nav-item"  id="imagesmenu">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
@@ -329,13 +329,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{route('admin.images.add')}}" class="nav-link">
                   <i class="fas fa-plus nav-icon"></i>
                   <p>Felvétel</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{route('admin.images.list')}}" class="nav-link">
                   <i class="fas fa-list nav-icon"></i>
                   <p>Listázás</p>
                 </a>
