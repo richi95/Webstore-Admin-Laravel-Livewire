@@ -104,7 +104,7 @@
                                         </div>
                                     
                                         <div class="col-md-6">
-                                        <a href="" class="btn btn-primary">Kiválaszt</a>
+                                        <a href="{{route('admin.products.add.gallery')}}" class="btn btn-primary">Kiválaszt</a>
                                         {{-- @error($id)
                                             <div class="invalid-feedback">{{$message}}</div>
                                         @enderror --}}
