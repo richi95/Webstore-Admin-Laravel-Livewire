@@ -104,7 +104,9 @@
                                         </div>
                                     
                                         <div class="col-md-6">
-                                        <a href="{{route('admin.products.add.gallery')}}" class="btn btn-primary">Kiválaszt</a>
+                                         <div id="product-images">képek</div>   
+
+                                        <a href="#" class="btn btn-primary"   data-toggle="modal" data-target="#modal-default" onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }})">Kiválaszt</a>
                                         {{-- @error($id)
                                             <div class="invalid-feedback">{{$message}}</div>
                                         @enderror --}}
@@ -170,4 +172,63 @@
         </section>
         <!-- /.content -->
     </div>
+
+<script>
+    
+    function loadModalContent(title, body){
+        const modaltitle = document.getElementById('modal-title');
+        const modalbody = document.getElementById('modal-body');
+
+        modaltitle.innerText = title;
+
+
+
+        let out = '<div class="row">';
+            out  += body.map(item=>{
+            return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
+            <input type="checkbox" class="selected-image" data-value="/storage/${item.file}"> <span class="text-white">kiválaszt</span>
+            </div>`;
+        }).join('');
+        out  += '</div>';
+
+        modalbody.innerHTML = out
+        
+        let images='';
+        document.getElementById('modal-save').onclick=function(){
+            document.querySelectorAll('.selected-image').forEach(function(item){
+              
+                // if( item.checked )
+                images += `<img src="${item.dataset.value}" style="width:100%">`
+            })
+        }
+        alert(images);
+        document.getElementById('product-images').innerHTML = images;
+    }
+
+</script>
+
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-title">title</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+              tartalom
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="modal-save" >Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
 @endsection
