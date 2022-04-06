@@ -24,7 +24,6 @@ class CategoryController extends Controller
     function store(Request $request){
 
         $validated =  $request->validate($this->rules);
-
         if( $request->hasfile('file') )
             $path = $request->file('file')->store('uploads/categories');
 
@@ -48,6 +47,11 @@ class CategoryController extends Controller
                 'categories'=>$cats,
                 'openmenu'=>'#categoriesmenu'
             ]);
+    }
+    function delete( Category $category ){
+
+            Category::find($category->id)->delete();
+            return redirect()->back();
     }
 
     function update( Category $category , Request $request ){

@@ -1,11 +1,10 @@
-@php 
 
-// $value = '';
+{{-- // $value = '';
 // foreach( \App\Models\Setting::all()->toarray() as $key => $val){
 //     if( $val["key"] == $id )
 //         $value= $val["value"];
 // }
-// @endphp
+// @endphp --}}
 
 <div class="form-group row px-5">
 

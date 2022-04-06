@@ -33,9 +33,11 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.categories.edit', [
-                                'category'=>$item->id
-                            ]) }}" method="post" enctype="multipart/form-data">
+                            <form
+                                action="{{ route('admin.post.categories.edit', [
+                                    'category' => $item->id,
+                                ]) }}"
+                                method="post" enctype="multipart/form-data">
                                 @method('POST')
                                 @csrf
 
@@ -62,11 +64,12 @@
                                     <div class="form-group row px-5">
 
                                         <div class="col-md-6">
-                                            <label  class="col">Jelenlegi kép</label>
+                                            <label class="col">Jelenlegi kép</label>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <img src="{{ url($item->file ? '/storage/'.$item->file : 'adminfiles/dist/img/noimg.png')}}" alt="" width="50%">
+                                            <img src="{{ url($item->file ? '/storage/' . $item->file : 'adminfiles/dist/img/noimg.png') }}"
+                                                alt="" width="50%">
                                         </div>
                                     </div>
 
@@ -95,40 +98,40 @@
                                         'value' => '',
                                         'params' => null,
                                     ])
-                                  
-
-
-                                  @include('admin.includes.form.input',[
-                                    'id'=>'seo_title',
-                                    'label'=>'SEO title',
-                                    'placeholder'=>'Title',
-                                    'type'=>'text',
-                                    'value'=>'',
-                                    'params'=>null
-                                ])
-                                
-                                @include('admin.includes.form.input',[
-                                  'id'=>'seo_description',
-                                  'label'=>'SEO description',
-                                  'placeholder'=>'Description',
-                                  'type'=>'text',
-                                  'value'=>'',
-                                  'params'=>null
-                              ])
-              
-                              @include('admin.includes.form.input',[
-                                  'id'=>'seo_keywords',
-                                  'label'=>'SEO keywords',
-                                  'placeholder'=>'Keywords',
-                                  'type'=>'text',
-                                  'value'=>'',
-                                  'params'=>null
-                              ])
 
 
 
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_title',
+                                        'label' => 'SEO title',
+                                        'placeholder' => 'Title',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
 
-                             
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_description',
+                                        'label' => 'SEO description',
+                                        'placeholder' => 'Description',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
+
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_keywords',
+                                        'label' => 'SEO keywords',
+                                        'placeholder' => 'Keywords',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
+
+
+
+
+
 
                                 </div>
                                 <!-- /.card-body -->
