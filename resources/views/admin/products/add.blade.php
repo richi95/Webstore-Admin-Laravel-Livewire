@@ -48,6 +48,18 @@
                                         'options' => $categories,
                                     ]) --}}
 
+                                    <div class="form-group row px-5">
+
+                                        <div class="col-md-6">
+                                            <label class="col">Kategória</label>
+                                        </div>
+                                    
+                                        <div class="col-md-6">
+                                            @include("admin.includes.form.category_dd")
+
+                                        </div>
+                                    </div>
+
                                     @include('admin.includes.form.input', [
                                         'id' => 'name',
                                         'label' => 'Terméknév',
@@ -104,9 +116,10 @@
                                         </div>
                                     
                                         <div class="col-md-6">
-                                         <div id="product-images">képek</div>   
+                                         <div id="product-images">képek</div>  
+                                         <input type="hidden" name="main_image" id="main_image" value=""> 
 
-                                        <a href="#" class="btn btn-primary"   data-toggle="modal" data-target="#modal-default" onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }})">Kiválaszt</a>
+                                        <a href="#" class="btn btn-primary"   data-toggle="modal" data-target="#modal-default" onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }}); ">Kiválaszt</a>
                                         {{-- @error($id)
                                             <div class="invalid-feedback">{{$message}}</div>
                                         @enderror --}}
@@ -174,6 +187,8 @@
     </div>
 
 <script>
+
+    let PRODUCT_MAIN_IMG='';
     
     function loadModalContent(title, body){
         const modaltitle = document.getElementById('modal-title');
@@ -186,25 +201,49 @@
         let out = '<div class="row">';
             out  += body.map(item=>{
             return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
-            <input type="checkbox" class="selected-image" data-value="/storage/${item.file}"> <span class="text-white">kiválaszt</span>
+            
+                
+                <input type="checkbox" class=" selected-image" data-value="/storage/${item.file}"> kiválaszt
+
+                <input type="radio"  name="main_image" data-value="/storage/${item.file}" class="ml-2 main-image"> kezdőkép 
+
             </div>`;
         }).join('');
         out  += '</div>';
 
         modalbody.innerHTML = out
         
-        let images='';
-        document.getElementById('modal-save').onclick=function(){
-            document.querySelectorAll('.selected-image').forEach(function(item){
-              
-                // if( item.checked )
-                images += `<img src="${item.dataset.value}" style="width:100%">`
-            })
-        }
-        alert(images);
-        document.getElementById('product-images').innerHTML = images;
+       
     }
 
+    function selectImages(){
+    let images='';
+       
+            document.querySelectorAll('.selected-image').forEach(function(item){
+              
+               if( item.checked )
+                images += `<img src="${item.dataset.value}" style="width:80px; height:80px; object-fit:cover;" class="m-1">
+                <input type="hidden" name="images[]" value="${item.dataset.value}">
+                `
+            })
+       
+        //alert(images);
+        document.getElementById('product-images').innerHTML = images;
+
+
+        document.querySelectorAll('.main-image').forEach(function(item){
+            if( item.checked )
+                PRODUCT_MAIN_IMG = item.dataset.value
+        })
+
+
+        const mainimg = document.querySelector('#product-images > img[src="'+PRODUCT_MAIN_IMG+'"]');
+        mainimg.style.border='5px solid green';
+        mainimg.title='Kezdőkép'
+
+        document.getElementById('main_image').value=PRODUCT_MAIN_IMG
+
+    }
 </script>
 
     <div class="modal fade" id="modal-default">
@@ -221,7 +260,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="modal-save" >Save changes</button>
+              <button type="button" class="btn btn-primary" id="modal-save" onclick="selectImages()">Képek beillesztése</button>
             </div>
           </div>
           <!-- /.modal-content -->
