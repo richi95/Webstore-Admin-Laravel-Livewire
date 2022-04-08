@@ -33,7 +33,8 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.categories.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.post.categories.store') }}" method="post"
+                                enctype="multipart/form-data" id="product-store-form">
                                 @method('POST')
                                 @csrf
 
@@ -53,9 +54,11 @@
                                         <div class="col-md-6">
                                             <label class="col">Kategória</label>
                                         </div>
-                                    
+
                                         <div class="col-md-6">
-                                            @include("admin.includes.form.category_dd")
+                                            @include(
+                                                'admin.includes.form.category_dd'
+                                            )
 
                                         </div>
                                     </div>
@@ -68,64 +71,82 @@
                                         'value' => '',
                                         'params' => null,
                                     ])
-                                    {{---------------CHECKBOX----------------------}}
+                                    {{-- -------------CHECKBOX-------------------- --}}
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-1',
                                         'name' => 'main_page_highlight',
                                         'label' => 'Főoldali kiemelés',
                                         'params' => null,
-                                    ])                                   
+                                    ])
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-2',
                                         'name' => 'category_highlight',
                                         'label' => 'Kategóriai kiemelés',
                                         'params' => null,
-                                    ])                                   
+                                    ])
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-3',
                                         'name' => 'discount',
                                         'label' => 'Akciós',
                                         'params' => null,
-                                    ])                                   
+                                    ])
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-4',
                                         'name' => 'user_reviews',
                                         'label' => 'Felhasználói véleményezés',
                                         'params' => null,
                                     ])
-                                    {{--(ezt a rendszer vásárláskor aktualizálja)--}}                                   
+                                    {{-- (ezt a rendszer vásárláskor aktualizálja) --}}
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-5',
                                         'name' => 'adjustable_quantity',
                                         'label' => 'Beállítható mennyiség',
                                         'params' => null,
-                                    ])                                   
+                                    ])
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'check-6',
                                         'name' => 'nocount',
                                         'label' => 'Nem használja a termékmennyiségek nyilvántartását',
                                         'params' => null,
-                                    ])                                   
-                                    {{---------------/CHECKBOX----------------------}}
-                                    {{--KépVálasztó gomb--}}
+                                    ])
+                                    {{-- -------------/CHECKBOX-------------------- --}}
+                                    {{-- KépVálasztó gomb --}}
 
                                     <div class="form-group row px-5">
-
                                         <div class="col-md-6">
                                             <label class="col">Válasszon képeket</label>
                                         </div>
-                                    
-                                        <div class="col-md-6">
-                                         <div id="product-images">képek</div>  
-                                         <input type="hidden" name="main_image" id="main_image" value=""> 
 
-                                        <a href="#" class="btn btn-primary"   data-toggle="modal" data-target="#modal-default" onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }}); ">Kiválaszt</a>
-                                        {{-- @error($id)
+                                        <div class="col-md-6">
+                                            <div id="product-images">képek</div>
+                                            <input type="hidden" name="main_image" id="main_image" value="">
+
+                                            <a href="#" class="btn btn-primary" data-toggle="modal"
+                                                data-target="#modal-default"
+                                                onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }}); ">Kiválaszt</a>
+                                            {{-- @error($id)
                                             <div class="invalid-feedback">{{$message}}</div>
                                         @enderror --}}
                                         </div>
-                                    
                                     </div>
+
+                                    {{--  --}}
+
+                                    <div class="form-group row px-5">
+                                        <div class="col-md-6">
+                                            <label class="col">Válasszon dokumentumokat</label>
+                                        </div>
+
+                                        <div class="col-md-6 documents-container" >
+                                            @foreach( $docs as $dc )
+                                            <div class="py-2">
+                                               <input type="checkbox"  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
+                                               <label class="form-check-label" for="doc-{{$dc->id}}">{{$dc->title}}</label>
+                                            </div>   
+                                            @endforeach
+                                        </div>
+                                    </div>
+
                                     @include('admin.includes.form.input', [
                                         'id' => 'slug',
                                         'label' => 'SEO URL (kulcsszavas URL)',
@@ -134,38 +155,56 @@
                                         'value' => '',
                                         'params' => null,
                                     ])
-                                  
-                                  @include('admin.includes.form.input',[
-                                    'id'=>'seo_title',
-                                    'label'=>'SEO title',
-                                    'placeholder'=>'Title',
-                                    'type'=>'text',
-                                    'value'=>'',
-                                    'params'=>null
-                                ])
-                                
-                                @include('admin.includes.form.input',[
-                                  'id'=>'seo_description',
-                                  'label'=>'SEO description',
-                                  'placeholder'=>'Description',
-                                  'type'=>'text',
-                                  'value'=>'',
-                                  'params'=>null
-                              ])
-              
-                              @include('admin.includes.form.input',[
-                                  'id'=>'seo_keywords',
-                                  'label'=>'SEO keywords',
-                                  'placeholder'=>'Keywords',
-                                  'type'=>'text',
-                                  'value'=>'',
-                                  'params'=>null
-                              ])
+
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_title',
+                                        'label' => 'SEO title',
+                                        'placeholder' => 'Title',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
+
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_description',
+                                        'label' => 'SEO description',
+                                        'placeholder' => 'Description',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
+
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'seo_keywords',
+                                        'label' => 'SEO keywords',
+                                        'placeholder' => 'Keywords',
+                                        'type' => 'text',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
+
+
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'price',
+                                        'label' => 'Ár',
+                                        'placeholder' => 'Ár',
+                                        'type' => 'number',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
 
 
 
+                                    @include('admin.includes.form.input', [
+                                        'id' => 'hotprice',
+                                        'label' => 'Akciós ár',
+                                        'placeholder' => 'Akciós ár',
+                                        'type' => 'number',
+                                        'value' => '',
+                                        'params' => null,
+                                    ])
 
-                             
+
 
                                 </div>
                                 <!-- /.card-body -->
@@ -186,21 +225,20 @@
         <!-- /.content -->
     </div>
 
-<script>
+    <script>
+        let PRODUCT_MAIN_IMG = '';
 
-    let PRODUCT_MAIN_IMG='';
-    
-    function loadModalContent(title, body){
-        const modaltitle = document.getElementById('modal-title');
-        const modalbody = document.getElementById('modal-body');
+        function loadModalContent(title, body) {
+            const modaltitle = document.getElementById('modal-title');
+            const modalbody = document.getElementById('modal-body');
 
-        modaltitle.innerText = title;
-
+            modaltitle.innerText = title;
 
 
-        let out = '<div class="row">';
-            out  += body.map(item=>{
-            return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
+
+            let out = '<div class="row">';
+            out += body.map(item => {
+                return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
             
                 
                 <input type="checkbox" class=" selected-image" data-value="/storage/${item.file}"> kiválaszt
@@ -208,66 +246,97 @@
                 <input type="radio"  name="main_image" data-value="/storage/${item.file}" class="ml-2 main-image"> kezdőkép 
 
             </div>`;
-        }).join('');
-        out  += '</div>';
+            }).join('');
+            out += '</div>';
 
-        modalbody.innerHTML = out
-        
-       
-    }
+            modalbody.innerHTML = out
 
-    function selectImages(){
-    let images='';
-       
-            document.querySelectorAll('.selected-image').forEach(function(item){
-              
-               if( item.checked )
-                images += `<img src="${item.dataset.value}" style="width:80px; height:80px; object-fit:cover;" class="m-1">
+
+        }
+
+        function selectImages() {
+            let images = '';
+
+            document.querySelectorAll('.selected-image').forEach(function(item) {
+
+                if (item.checked)
+                    images += `<img src="${item.dataset.value}" style="width:80px; height:80px; object-fit:cover;" class="m-1">
                 <input type="hidden" name="images[]" value="${item.dataset.value}">
                 `
             })
-       
-        //alert(images);
-        document.getElementById('product-images').innerHTML = images;
+
+            //alert(images);
+            document.getElementById('product-images').innerHTML = images;
 
 
-        document.querySelectorAll('.main-image').forEach(function(item){
-            if( item.checked )
-                PRODUCT_MAIN_IMG = item.dataset.value
-        })
+            document.querySelectorAll('.main-image').forEach(function(item) {
+                if (item.checked)
+                    PRODUCT_MAIN_IMG = item.dataset.value
+            })
 
 
-        const mainimg = document.querySelector('#product-images > img[src="'+PRODUCT_MAIN_IMG+'"]');
-        mainimg.style.border='5px solid green';
-        mainimg.title='Kezdőkép'
+            const mainimg = document.querySelector('#product-images > img[src="' + PRODUCT_MAIN_IMG + '"]');
+            mainimg.style.border = '5px solid green';
+            mainimg.title = 'Kezdőkép'
 
-        document.getElementById('main_image').value=PRODUCT_MAIN_IMG
+            document.getElementById('main_image').value = PRODUCT_MAIN_IMG
 
-    }
-</script>
+        }
+
+        const formelem = document.getElementById('product-store-form');
+        const fd = new FormData;
+        formelem.onsubmit = function(){
+
+            document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select').forEach(function(formelem){
+                const name = formelem.name;
+                const value = formelem.value;
+
+                fd.append( name, value );
+
+            })
+
+            document.querySelectorAll('#product-store-form input[type="checkbox"]').forEach(function(formelem){
+
+                if(formelem.checked){
+                const name = formelem.name;
+                const value = formelem.value;
+
+                fd.append( name, value );
+                }    
+            })
+
+            console.log(fd);
+
+            fetch( '/kitalált', {
+                method: 'POST',
+                body: fd
+            } );
+
+            return false;
+        }
+    </script>
 
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-title">title</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title">title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    tartalom
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="modal-save" onclick="selectImages()">Képek
+                        beillesztése</button>
+                </div>
             </div>
-            <div class="modal-body" id="modal-body">
-              tartalom
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="modal-save" onclick="selectImages()">Képek beillesztése</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
+            <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
-
-
+    </div>
+    <!-- /.modal -->
 @endsection

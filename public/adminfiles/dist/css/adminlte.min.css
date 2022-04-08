@@ -59170,4 +59170,9 @@ ul.nav-treeview > li > a {
   margin-left: 26px;
 }
 
+.documents-container{
+  height: 250px;
+  overflow:auto;
+}
+
 /*# sourceMappingURL=adminlte.min.css.map */

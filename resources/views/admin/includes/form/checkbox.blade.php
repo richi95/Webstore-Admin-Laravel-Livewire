@@ -6,7 +6,7 @@
 
     <div class="col-md-6">
         <input type="checkbox" class=" @error($id) is-invalid @enderror" value="1" {{ $params }}
-            id="{{ $id }}" name="{{ $id }}" {{ old($id, isset($item->$id)) ? 'checked' : '' }}>
+            id="{{ $id }}" name="{{ $name }}" {{ old($id, isset($item->$id)) ? 'checked' : '' }}>
         <label class="form-check-label" for="{{ $id }}">{{ $label }}</label>
 
         @error($id)
