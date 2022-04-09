@@ -19,7 +19,7 @@ class ProductController extends Controller
                 'seo_title'=>'nullable|min:2|max:80', 
                 'seo_keywords'=>'nullable|min:2|max:200', 
                 'seo_description'=>'nullable|min:2|max:200',
-                'price'=>'required', 
+                'price'=>'required',    
                 'hotprice'=>'nullable', 
         ]);
 
