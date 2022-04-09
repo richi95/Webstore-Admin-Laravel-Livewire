@@ -20,7 +20,7 @@ class ProductController extends Controller
                 'seo_keywords'=>'nullable|min:2|max:200', 
                 'seo_description'=>'nullable|min:2|max:200',
                 'price'=>'required', 
-                'hotprice'=>'nullable' 
+                'hotprice'=>'nullable', 
         ]);
 
         if( $validated->fails())
