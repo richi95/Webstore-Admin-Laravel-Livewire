@@ -33,7 +33,7 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.categories.store') }}" method="post"
+                            <form action="{{ route('admin.post.products.add') }}" method="post"
                                 enctype="multipart/form-data" id="product-store-form">
                                 @method('POST')
                                 @csrf
@@ -59,7 +59,7 @@
                                             @include(
                                                 'admin.includes.form.category_dd'
                                             )
-
+                                            <span class="error category_id text-danger"></span>
                                         </div>
                                     </div>
 
@@ -284,9 +284,11 @@
         }
 
         const formelem = document.getElementById('product-store-form');
-        const fd = new FormData;
+      
         formelem.onsubmit = function(){
 
+            const fd = new FormData;
+            
             document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select').forEach(function(formelem){
                 const name = formelem.name;
                 const value = formelem.value;
@@ -305,12 +307,29 @@
                 }    
             })
 
+ 
+
             console.log(fd);
 
-            fetch( '/kitalált', {
+            fetch( '{{ route('admin.post.products.add') }}', {
                 method: 'POST',
+                headers: {     
+                    'X-CSRF-TOKEN': '{{ @csrf_token() }}'
+                },
                 body: fd
-            } );
+            } ).then( result=>result.json() ).then(result=>{
+
+                document.querySelectorAll('.error').forEach(function(item){
+                    item.innerText=''
+                })
+
+                for( let error in  result ){
+           
+                    try{
+                    document.querySelector('.error.'+error).innerText=result[error][0]
+                }catch(e){}
+                }
+            });
 
             return false;
         }

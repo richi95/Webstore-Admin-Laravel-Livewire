@@ -18,5 +18,6 @@
         @error($id)
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+        <span class="error {{$id}} text-danger"></span>
     </div>
 </div>
