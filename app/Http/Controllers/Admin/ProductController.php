@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
 use Illuminate\Support\Facades\Validator;
 
-class ProductController extends Controller
+class ProductController extends Controller   
 {
     function store(Request  $request){
  
