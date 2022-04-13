@@ -40,7 +40,7 @@
 
                                 <div class="card-body">
 
-
+                                    
                                     {{-- @include('admin.includes.form.select', [
                                         'id' => 'parent_id',
                                         'label' => 'Szülőkategória',
@@ -209,8 +209,9 @@
                                 </div>
                                 <!-- /.card-body -->
 
-                                <div class="card-footer">
+                                <div class="card-footer d-flex justify-content-between">
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    <span class="success"></span>
                                 </div>
                             </form>
                         </div>
@@ -321,6 +322,9 @@
 
                 document.querySelectorAll('.error').forEach(function(item){
                     item.innerText=''
+                    document.querySelector('.success').innerText='A termék sikeresen mentésre került!';
+                    document.querySelector('.success').style.pointerEvents='none';
+                    document.querySelector('.success').className='btn btn-success text-left';
                 })
 
                 if( typeof result.success === 'undefined' ) {
