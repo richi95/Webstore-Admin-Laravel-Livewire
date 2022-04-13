@@ -139,8 +139,13 @@
 
                                         <div class="col-md-6 documents-container" >
                                             @foreach( $docs as $dc )
+                                            <?php 
+                                            
+                                           
+                                            
+                                            ?>
                                             <div class="py-2">
-                                               <input type="checkbox"  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
+                                               <input type="checkbox" {{checkDocSelected( $products, $dc->id )===true ? 'checked' : ''}}  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
                                                <label class="form-check-label" for="doc-{{$dc->id}}">{{$dc->title}}</label>
                                             </div>   
                                             @endforeach
@@ -152,7 +157,7 @@
                                         'label' => 'SEO URL (kulcsszavas URL)',
                                         'placeholder' => 'SEO URL ',
                                         'type' => 'text',
-                                        'value' => '',
+                                        'value' => $products->slug,
                                         'params' => null,
                                     ])
 
@@ -161,7 +166,7 @@
                                         'label' => 'SEO title',
                                         'placeholder' => 'Title',
                                         'type' => 'text',
-                                        'value' => '',
+                                        'value' => $products->seo_title,
                                         'params' => null,
                                     ])
 
@@ -170,7 +175,7 @@
                                         'label' => 'SEO description',
                                         'placeholder' => 'Description',
                                         'type' => 'text',
-                                        'value' => '',
+                                        'value' => $products->seo_description,
                                         'params' => null,
                                     ])
 
@@ -179,7 +184,7 @@
                                         'label' => 'SEO keywords',
                                         'placeholder' => 'Keywords',
                                         'type' => 'text',
-                                        'value' => '',
+                                        'value' =>$products->seo_keywords,
                                         'params' => null,
                                     ])
 
@@ -189,7 +194,7 @@
                                         'label' => 'Ár',
                                         'placeholder' => 'Ár',
                                         'type' => 'number',
-                                        'value' => '',
+                                        'value' => $products->price,
                                         'params' => null,
                                     ])
 
@@ -200,12 +205,22 @@
                                         'label' => 'Akciós ár',
                                         'placeholder' => 'Akciós ár',
                                         'type' => 'number',
-                                        'value' => '',
+                                        'value' => $products->hotprice,
                                         'params' => null,
                                     ])
 
 
-                                    
+                                        @include('admin.includes.form.textarea', [
+                                            'id' => 'description',
+                                            'label' => 'Leírás',
+                                            'placeholder' => 'Leírás',
+
+                                            'value' => $products->description,
+                                            'params' => " style='height:200px;'",
+                                        ])
+
+
+                                  
                                 </div>
                                 <!-- /.card-body -->
 

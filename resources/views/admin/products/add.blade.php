@@ -205,6 +205,15 @@
                                     ])
 
 
+                                    @include('admin.includes.form.textarea', [
+                                        'id' => 'description',
+                                        'label' => 'Leírás',
+                                        'placeholder' => 'Leírás',
+                    
+                                        'value' => '',
+                                        'params' => " style='height:200px;'",
+                                    ])
+
                                     
                                 </div>
                                 <!-- /.card-body -->
@@ -290,7 +299,7 @@
 
             const fd = new FormData;
             
-            document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select').forEach(function(formelem){
+            document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select, #product-store-form textarea').forEach(function(formelem){
                 const name = formelem.name;
                 const value = formelem.value;
 

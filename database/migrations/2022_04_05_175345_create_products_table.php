@@ -33,6 +33,8 @@ class CreateProductsTable extends Migration
 
             $table->integer('price')->default(0);
             $table->integer('hotprice')->default(0);
+
+            $table->string('description', 65535)->nullable();
             
             $table->timestamps();
         });
