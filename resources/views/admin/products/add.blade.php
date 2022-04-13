@@ -5,7 +5,7 @@
         <section class="content-header">
             <div class="container-fluid">
 
-                @include('admin.includes.message')
+                <div class="alert mb-3 alert-success d-none" id="successmessage">Sikeres rögzítés!</div>
 
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -242,9 +242,9 @@
                 return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
             
                 
-                <input type="checkbox" class=" selected-image" data-value="/storage/${item.file}"> kiválaszt
+                <input type="checkbox" class=" selected-image" data-value="/storage/${item.file}" data-id="${item.id}"> kiválaszt
 
-                <input type="radio"  name="main_image" data-value="/storage/${item.file}" class="ml-2 main-image"> kezdőkép 
+                <input type="radio"  name="main_image" data-value="/storage/${item.file}" data-id="${item.id}" class="ml-2 main-image"> kezdőkép 
 
             </div>`;
             }).join('');
@@ -262,7 +262,7 @@
 
                 if (item.checked)
                     images += `<img src="${item.dataset.value}" style="width:80px; height:80px; object-fit:cover;" class="m-1">
-                <input type="hidden" name="images[]" value="${item.dataset.value}">
+                <input type="hidden" name="images[]" value="${item.dataset.id}">
                 `
             })
 
@@ -327,12 +327,19 @@
                     document.querySelector('.success').className='btn btn-success text-left';
                 })
 
+                if( typeof result.success === 'undefined' ) {
+                
+
                 for( let error in  result ){
            
                     try{
                     document.querySelector('.error.'+error).innerText=result[error][0]
                 }catch(e){}
                 }
+
+            } else {
+                document.getElementById('successmessage').classList.remove('d-none');
+            }
             });
 
             return false;

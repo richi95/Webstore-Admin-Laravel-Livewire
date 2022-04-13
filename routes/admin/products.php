@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 
 
 Route::get('/products/add', function(){
+ 
     return view('admin.products.add', [
             'item'=>'', 
             'images'=>Image::all(),
@@ -21,6 +22,4 @@ Route::post('/products/add', [ProductController::class, 'store'])->name('admin.p
 //     return view('admin.products.gallery');
 // })->name('admin.products.add.gallery');
 
-Route::get('/products/list', function(){
-    return view('admin.products.list');
-})->name('admin.products.list');
+Route::get('/products/list', [ProductController::class, 'list'])->name('admin.products.list');
