@@ -33,11 +33,11 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.products.add') }}" method="post"
+                            <form action="{{ route('admin.post.products.edit') }}" method="post"
                                 enctype="multipart/form-data" id="product-store-form">
                                 @method('POST')
                                 @csrf
-
+                                
                                 <div class="card-body">
 
 
@@ -64,50 +64,50 @@
                                     </div>
 
                                     @include('admin.includes.form.input', [
-                                        'id' => 'name',
+                                        'id' => $products->id,
                                         'label' => 'Terméknév',
                                         'placeholder' => 'Terméknév',
                                         'type' => 'text',
-                                        'value' => '',
-                                        'params' => null,
+                                        'value' => $products->name,
+                                        'params' =>  null
                                     ])
                                     {{-- -------------CHECKBOX-------------------- --}}
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-1',
+                                        'id' => $products->id,
                                         'name' => 'main_page_highlight',
                                         'label' => 'Főoldali kiemelés',
-                                        'params' => null,
+                                        'params' => $products->main_page_highlight
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-2',
+                                        'id' => $products->id,
                                         'name' => 'category_highlight',
                                         'label' => 'Kategóriai kiemelés',
-                                        'params' => null,
+                                        'params' => $products->category_highlight,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-3',
+                                        'id' => $products->id,
                                         'name' => 'discount',
                                         'label' => 'Akciós',
-                                        'params' => null,
+                                        'params' => $products->discount,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-4',
+                                        'id' => $products->id,
                                         'name' => 'user_reviews',
                                         'label' => 'Felhasználói véleményezés',
-                                        'params' => null,
+                                        'params' => $products->user_reviews,
                                     ])
                                     {{-- (ezt a rendszer vásárláskor aktualizálja) --}}
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-5',
+                                        'id' => $products->id,
                                         'name' => 'adjustable_quantity',
                                         'label' => 'Beállítható mennyiség',
-                                        'params' => null,
+                                        'params' => $products->adjustable_quantity,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-6',
+                                        'id' => $products->id,
                                         'name' => 'nocount',
                                         'label' => 'Nem használja a termékmennyiségek nyilvántartását',
-                                        'params' => null,
+                                        'params' => $products->nocount,
                                     ])
                                     {{-- -------------/CHECKBOX-------------------- --}}
                                     {{-- KépVálasztó gomb --}}
@@ -311,7 +311,7 @@
 
             console.log(fd);
 
-            fetch( '{{ route('admin.post.products.add') }}', {
+            fetch( '{{ route('admin.post.products.edit') }}', {
                 method: 'POST',
                 headers: {     
                     'X-CSRF-TOKEN': '{{ @csrf_token() }}'

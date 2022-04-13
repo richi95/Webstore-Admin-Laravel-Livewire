@@ -68,15 +68,15 @@
                                                 <td> {{ getcategoryById( $pr->category_id )->name }} </td>
                                                 <td> <i class="fa fa-check text-success"></i> </td>
                                                 <td> {{ $pr->price }} </td>
-                                                <form action="{{ route('admin.post.categories.delete', $pr->id) }}" method="post">
+                                                <form action="{{ route('admin.products.delete', $pr->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <td class="d-flex flex-nowrap" style="gap: 1rem">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('admin.categories.edit', [
-                                                                'category' => $pr->id,
+                                                            href="{{ route('admin.products.edit', [
+                                                                'product' => $pr,
                                                             ]) }}">Szerkesztés</a>
-                                                        <button type="submit" class="btn btn-danger">X</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
                                                     </td>
                                                 </form>
 

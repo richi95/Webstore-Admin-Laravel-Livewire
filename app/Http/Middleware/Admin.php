@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
+        // if($request->password == User::find(1)->password && $request->email == User::find(1)->email)
         return $next($request);
+        // else
+        // return redirect('/admin');
     }
 }

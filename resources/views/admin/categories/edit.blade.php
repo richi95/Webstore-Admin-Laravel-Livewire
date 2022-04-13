@@ -75,8 +75,10 @@
 
                                     @include('admin.includes.form.checkbox', [
                                         'id' => 'delete_img',
+                                        'name' =>'delete_img',
                                         'label' => 'Kép törlése',
                                         'params' => null,
+                                        
                                     ])
 
 

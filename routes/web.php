@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,10 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
-        });
+        })->name('admin.dashboard');
+        Route::post('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
 
         include __DIR__.'/admin/settings.php';
 

@@ -3,10 +3,9 @@
     <div class="col-md-6">
 
     </div>
-
     <div class="col-md-6">
-        <input type="checkbox" class=" @error($id) is-invalid @enderror" value="1" {{ $params }}
-            id="{{ $id }}" name="{{ $name }}" {{ old($id, isset($item->$id)) ? 'checked' : '' }}>
+        <input type="checkbox" class=" @error($id) is-invalid @enderror"
+            id="{{ $id }}" name="{{ $name }}" {{ $params == '1' ? 'checked' : '' }}>
         <label class="form-check-label" for="{{ $id }}">{{ $label }}</label>
         <span class="error {{$id}} text-danger"></span>
         @error($id)
