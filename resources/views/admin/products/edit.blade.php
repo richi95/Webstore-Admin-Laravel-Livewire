@@ -130,7 +130,7 @@
                                         </div>
                                     </div>
 
-                                    {{--  --}}
+                                    {{-- {{dd($products)}} --}}
 
                                     <div class="form-group row px-5">
                                         <div class="col-md-6">
@@ -139,13 +139,9 @@
 
                                         <div class="col-md-6 documents-container" >
                                             @foreach( $docs as $dc )
-                                            <?php 
-                                            
-                                           
-                                            
-                                            ?>
                                             <div class="py-2">
-                                               <input type="checkbox" {{checkDocSelected( $products, $dc->id )===true ? 'checked' : ''}}  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
+                                                {{-- {{$dc->id}} --}}
+                                               <input type="checkbox" {{ checkDocSelected( $products, $dc->id )== true ? 'checked' : ''}}  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
                                                <label class="form-check-label" for="doc-{{$dc->id}}">{{$dc->title}}</label>
                                             </div>   
                                             @endforeach

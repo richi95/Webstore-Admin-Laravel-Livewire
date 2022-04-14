@@ -24,9 +24,19 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
       {{-- {{dd(App\Models\User::find(1)->password)}} --}}
-      <form action="{{route('admin.dashboard')}}" method="post">
+      <form action="{{route('admin.post.login')}}" method="post">
         @csrf
         @method('POST')
+        {!! csrf_field() !!}
+  
+        @if(Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ Session::get('error') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        @endif 
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">

@@ -21,9 +21,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        //if( !Auth::user()->is_admin ){
-            //redirect
-        //}
+       
+        // if( !Auth::user()->hasRole ){
+        //     redirect
+        // }
         // if($request->password == User::find(1)->password && $request->email == User::find(1)->email)
         return $next($request);
         // else

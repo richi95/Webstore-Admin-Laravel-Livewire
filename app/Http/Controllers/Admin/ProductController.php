@@ -47,8 +47,8 @@ class ProductController extends Controller
             $images_json = json_encode($images);
 
             Product::findOrFail($product->id)->update([
-                'documents' => $documents_json,
-                'images' => $images_json,
+                'document' => $documents_json,
+                'image' => $images_json,
                 'main_image' => json_encode(['title' => '', 'file' => $request->main_image])
             ]);
 
@@ -90,8 +90,8 @@ class ProductController extends Controller
             $images_json = json_encode($images);
 
             Product::findOrFail($product->id)->update([
-                'documents' => $documents_json,
-                'images' => $images_json,
+                'document' => $documents_json,
+                'image' => $images_json,
                 'main_image' => json_encode(['title' => '', 'file' => $request->main_image])
             ]);
 
