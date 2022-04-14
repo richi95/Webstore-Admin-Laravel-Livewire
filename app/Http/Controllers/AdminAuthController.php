@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
@@ -53,19 +54,22 @@ class AdminAuthController extends Controller
      */
     public function postLogin(Request $request)
     {
+       
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
-        {
-            // $user = auth()->guard('admin')->user();
-            
-            Session::flash('success','You are Login successfully!!');
-            return redirect()->route('admin.dashboard');
+        if (Auth::attempt([ 'email' => $request->input('email'), 
+                            'password' => $request->input('password'),
+                            'is_admin' => 1
+                            ]))
+        { 
+            return redirect()->route('admin.dashboard')->with('message', ['type'=>'success', 'text'=>'Sikeres belépés!']);
             
         } else {
-            return back()->with('error','your username and password are wrong.');
+         
+            return back()->with('message', ['type'=>'success', 'text'=>'Hibás belépési adatok!']);
+        
         }
 
     }

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/adminfiles/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+ 
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
@@ -27,16 +28,9 @@
       <form action="{{route('admin.post.login')}}" method="post">
         @csrf
         @method('POST')
-        {!! csrf_field() !!}
-  
-        @if(Session::get('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ Session::get('error') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-        </div>
-        @endif 
+ 
+        @include('admin.includes.message')
+
         <div class="input-group mb-3">
           <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
