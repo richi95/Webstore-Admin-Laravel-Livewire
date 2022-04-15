@@ -27,15 +27,19 @@ class CreateProductsTable extends Migration
             $table->integer('nocount')->default(0);
 
             $table->string('slug');
-            $table->string('seo_title');
-            $table->string('seo_description');
-            $table->string('seo_keywords');
+            $table->string('seo_title')->nullable();
+            $table->string('seo_description')->nullable();
+            $table->string('seo_keywords')->nullable();
 
             $table->integer('price')->default(0);
             $table->integer('hotprice')->default(0);
 
-            $table->string('description', 65535)->nullable();
+            $table->string('description', 2000)->nullable();
             
+            $table->document->string('description', 2000)->nullable();
+            $table->image->string('description', 2000)->nullable();
+            $table->main_image->string('description', 2000)->nullable();
+
             $table->timestamps();
         });
     }

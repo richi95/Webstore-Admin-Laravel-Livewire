@@ -18,7 +18,7 @@ Route::get('/products/add', function () {
 Route::get('/products/edit/{product}', function (Product $product) {
     return view('admin.products.edit', [
         'products' => $product,
-        'images' => Image::all(),
+        'images' => Image::orderBy('title')->get(),
         'docs' => Document::orderBy('title')->get()
     ]);
 })->name('admin.products.edit');

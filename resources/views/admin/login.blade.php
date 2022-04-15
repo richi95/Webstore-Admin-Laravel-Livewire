@@ -32,15 +32,18 @@
         @include('admin.includes.message')
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          @error( 'email' )<div class="text-danger w-100 d-block"> {{$message}} </div> @enderror
+          <input type="email" class="form-control @error( 'email' )is-invalid @enderror" placeholder="Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+        
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          @error( 'password' )<div class="text-danger w-100 d-block"> {{$message}} </div> @enderror
+          <input type="password" class="form-control  @error( 'email' )is-invalid @enderror" placeholder="Password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

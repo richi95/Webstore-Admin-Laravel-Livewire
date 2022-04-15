@@ -54,13 +54,15 @@ class AdminAuthController extends Controller
      */
     public function postLogin(Request $request)
     {
-       
-        $this->validate($request, [
+
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (Auth::attempt([ 'email' => $request->input('email'), 
-                            'password' => $request->input('password'),
+ 
+
+        if (Auth::attempt([ 'email' => $request->email, 
+                            'password' => $request->password,
                             'is_admin' => 1
                             ]))
         { 
@@ -68,7 +70,7 @@ class AdminAuthController extends Controller
             
         } else {
          
-            return back()->with('message', ['type'=>'success', 'text'=>'Hibás belépési adatok!']);
+            return back()->with('message', ['type'=>'danger', 'text'=>'Hibás belépési adatok!']);
         
         }
 

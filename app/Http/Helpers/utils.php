@@ -21,8 +21,21 @@ function checkDocSelected($prod, $id)
 
     return $result;
 
-    // if ($result != true)
-    //     return false;
-    // else
-    //     return true;
+}
+
+
+
+function checkImgSelected($prod, $id)
+{
+    $imgvar = json_decode($prod->image);
+    $result = array_filter($imgvar, function ($elem) use ($id) {
+
+        if ($elem->id == $id) {
+            return true;
+        }
+        return false;
+    });
+
+    return $result;
+
 }

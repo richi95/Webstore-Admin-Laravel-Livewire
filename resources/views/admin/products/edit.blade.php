@@ -117,16 +117,14 @@
                                             <label class="col">Válasszon képeket</label>
                                         </div>
 
-                                        <div class="col-md-6">
-                                            <div id="product-images">képek</div>
-                                            <input type="hidden" name="main_image" id="main_image" value="">
-
-                                            <a href="#" class="btn btn-primary" data-toggle="modal"
-                                                data-target="#modal-default"
-                                                onclick="loadModalContent('Válasszon képeket', {{ Js::from($images) }}); ">Kiválaszt</a>
-                                            {{-- @error($id)
-                                            <div class="invalid-feedback">{{$message}}</div>
-                                        @enderror --}}
+                                        <div class="col-md-6 documents-container" >
+                                            @foreach( $images as $img )
+                                            <div class="py-2">
+                                                {{-- {{$dc->id}} --}}
+                                               <input type="checkbox" {{ checkImgSelected( $products, $img->id )== true ? 'checked' : ''}}  value="{{$img->id}}" id="img-{{$img->id}}" name="images[]">
+                                               <label class="form-check-label" for="image-{{$img->id}}">{{$img->title}}</label>
+                                            </div>   
+                                            @endforeach
                                         </div>
                                     </div>
 

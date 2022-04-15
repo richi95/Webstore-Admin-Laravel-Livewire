@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-md-6">
-    <input type="{{$type}}" class="form-control col @error($id) is-invalid @enderror" value="{{ old($value, $value) }}" {{$params}} id="{{$id}}" name="{{$id}}" placeholder="{{$placeholder}}">
+    <input type="{{$type}}" class="form-control col @error($id) is-invalid @enderror" value="{{ old($id, $value) }}" {{$params}} id="{{$id}}" name="{{$id}}" placeholder="{{$placeholder}}">
     @error($id)
         <div class="invalid-feedback">{{$message}}</div>
     @enderror
