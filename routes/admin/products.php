@@ -23,8 +23,10 @@ Route::get('/products/edit/{product}', function (Product $product) {
     ]);
 })->name('admin.products.edit');
 
+Route::post('/products/edit/{product}',  [ProductController::class, 'edit'])->name('admin.post.products.edit');
+
 Route::post('/products/add', [ProductController::class, 'store'])->name('admin.post.products.add');
-Route::post('/products/edit', [ProductController::class, 'edit'])->name('admin.post.products.edit');
+ 
 
 // Route::get('/products/add/gallery', function(){
 //     return view('admin.products.gallery');

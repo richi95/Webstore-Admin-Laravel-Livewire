@@ -168,6 +168,12 @@
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"  href="{{route('admin.logout')}}" role="button">
+                        <i class="fas fa-door-open"></i>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->

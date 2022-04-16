@@ -4,7 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                
+                @include('admin.includes.message')
                 <div class="alert mb-3 alert-success d-none" id="successmessage">Sikeres rögzítés!</div>
 
                 <div class="row mb-2">
@@ -33,7 +33,7 @@
 
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.post.products.edit') }}" method="post"
+                            <form action="{{ route('admin.post.products.edit',['product'=>$products->id]) }}" method="post"
                                 enctype="multipart/form-data" id="product-store-form">
                                 @method('POST')
                                 @csrf
@@ -64,7 +64,7 @@
                                     </div>
 
                                     @include('admin.includes.form.input', [
-                                        'id' => $products->id,
+                                        'id' => 'name',
                                         'label' => 'Terméknév',
                                         'placeholder' => 'Terméknév',
                                         'type' => 'text',
@@ -73,38 +73,38 @@
                                     ])
                                     {{-- -------------CHECKBOX-------------------- --}}
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' => 'main_page_highlight',
                                         'name' => 'main_page_highlight',
                                         'label' => 'Főoldali kiemelés',
                                         'params' => $products->main_page_highlight
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' =>'category_highlight',
                                         'name' => 'category_highlight',
                                         'label' => 'Kategóriai kiemelés',
                                         'params' => $products->category_highlight,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' => 'discount',
                                         'name' => 'discount',
                                         'label' => 'Akciós',
                                         'params' => $products->discount,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' => 'user_reviews',
                                         'name' => 'user_reviews',
                                         'label' => 'Felhasználói véleményezés',
                                         'params' => $products->user_reviews,
                                     ])
                                     {{-- (ezt a rendszer vásárláskor aktualizálja) --}}
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' => 'adjustable_quantity',
                                         'name' => 'adjustable_quantity',
                                         'label' => 'Beállítható mennyiség',
                                         'params' => $products->adjustable_quantity,
                                     ])
                                     @include('admin.includes.form.checkbox', [
-                                        'id' => $products->id,
+                                        'id' => 'nocount',
                                         'name' => 'nocount',
                                         'label' => 'Nem használja a termékmennyiségek nyilvántartását',
                                         'params' => $products->nocount,
@@ -120,9 +120,11 @@
                                         <div class="col-md-6 documents-container" >
                                             @foreach( $images as $img )
                                             <div class="py-2">
+
                                                 {{-- {{$dc->id}} --}}
-                                               <input type="checkbox" {{ checkImgSelected( $products, $img->id )== true ? 'checked' : ''}}  value="{{$img->id}}" id="img-{{$img->id}}" name="images[]">
-                                               <label class="form-check-label" for="image-{{$img->id}}">{{$img->title}}</label>
+                                               <input type="checkbox" {{ checkImgSelected( $products, $img->id )== true ? 'checked' : ''}}  value="{{$img->id}}" id="image-{{$img->id}}" name="images[]">
+
+                                               <label class="form-check-label" for="image-{{$img->id}}"><img src="/storage/{{$img->file}}" width="100"></label>
                                             </div>   
                                             @endforeach
                                         </div>
@@ -234,122 +236,7 @@
         <!-- /.content -->
     </div>
 
-    <script>
-        let PRODUCT_MAIN_IMG = '';
-
-        function loadModalContent(title, body) {
-            const modaltitle = document.getElementById('modal-title');
-            const modalbody = document.getElementById('modal-body');
-
-            modaltitle.innerText = title;
-
-
-
-            let out = '<div class="row">';
-            out += body.map(item => {
-                return `<div class="col-4"><img style="width:100%; height:100px;object-fit:cover;" src="/storage/${item.file}">
-            
-                
-                <input type="checkbox" class=" selected-image" data-value="/storage/${item.file}" data-id="${item.id}"> kiválaszt
-
-                <input type="radio"  name="main_image" data-value="/storage/${item.file}" data-id="${item.id}" class="ml-2 main-image"> kezdőkép 
-
-            </div>`;
-            }).join('');
-            out += '</div>';
-
-            modalbody.innerHTML = out
-
-
-        }
-
-        function selectImages() {
-            let images = '';
-
-            document.querySelectorAll('.selected-image').forEach(function(item) {
-
-                if (item.checked)
-                    images += `<img src="${item.dataset.value}" style="width:80px; height:80px; object-fit:cover;" class="m-1">
-                <input type="hidden" name="images[]" value="${item.dataset.id}">
-                `
-            })
-
-            //alert(images);
-            document.getElementById('product-images').innerHTML = images;
-
-
-            document.querySelectorAll('.main-image').forEach(function(item) {
-                if (item.checked)
-                    PRODUCT_MAIN_IMG = item.dataset.value
-            })
-
-
-            const mainimg = document.querySelector('#product-images > img[src="' + PRODUCT_MAIN_IMG + '"]');
-            mainimg.style.border = '5px solid green';
-            mainimg.title = 'Kezdőkép'
-
-            document.getElementById('main_image').value = PRODUCT_MAIN_IMG
-
-        }
-
-        const formelem = document.getElementById('product-store-form');
-      
-        formelem.onsubmit = function(){
-
-            const fd = new FormData;
-            
-            document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select').forEach(function(formelem){
-                const name = formelem.name;
-                const value = formelem.value;
-
-                fd.append( name, value );
-
-            })
-
-            document.querySelectorAll('#product-store-form input[type="checkbox"]').forEach(function(formelem){
-
-                if(formelem.checked){
-                const name = formelem.name;
-                const value = formelem.value;
-
-                fd.append( name, value );
-                }    
-            })
-
  
-
-            console.log(fd);
-
-            fetch( '{{ route('admin.post.products.edit') }}', {
-                method: 'POST',
-                headers: {     
-                    'X-CSRF-TOKEN': '{{ @csrf_token() }}'
-                },
-                body: fd
-            } ).then( result=>result.json() ).then(result=>{
-
-                document.querySelectorAll('.error').forEach(function(item){
-                    item.innerText=''
-                })
-
-                if( typeof result.success === 'undefined' ) {
-                
-
-                for( let error in  result ){
-           
-                    try{
-                    document.querySelector('.error.'+error).innerText=result[error][0]
-                }catch(e){}
-                }
-
-            } else {
-                document.getElementById('successmessage').classList.remove('d-none');
-            }
-            });
-
-            return false;
-        }
-    </script>
 
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog modal-lg">

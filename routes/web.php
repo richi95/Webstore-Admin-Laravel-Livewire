@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminAuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
 
 
 /*
@@ -28,6 +31,13 @@ Route::group(['prefix' => 'admin'], function(){
         Route::post('/dashboard', function () {
             return view('admin.dashboard');
         })->name('admin.post.dashboard');
+
+
+        Route::get('/logout', function(){
+            Auth::logout();
+            Session::flush();
+            return redirect()->route('admin.login')->with('message', ['type'=>'success', 'text'=>'Sikeres kijelentkezés!']);
+        })->name('admin.logout');
 
         include __DIR__.'/admin/settings.php';
 

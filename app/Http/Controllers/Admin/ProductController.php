@@ -55,10 +55,10 @@ class ProductController extends Controller
             return response(['success' => true], 200);
         }
     }
-    function edit(Request  $request)
+    function edit(Product $product, Request  $request)
     {
-
-        $validated = Validator::make($request->all(), [
+ 
+        $request->validate([
             'category_id' => 'required',
             'name' => 'required|min:2|max:60',
             'slug' => 'required|min:2|max:60',
@@ -69,11 +69,27 @@ class ProductController extends Controller
             'hotprice' => 'nullable',
         ]);
 
-        if ($validated->fails())
-            return response($validated->errors(), 200);
-        else {
+     
 
-            $product = Product::updateorcreate($request->except(['images', 'documents', '_token', '_method', 'main_image']));
+            $product->update(
+                [
+                    "category_id" => $request-> category_id,
+                    "name" => $request-> name,
+                    "main_page_highlight" => $request->main_page_highlight ? 1 : 0 ,
+                    "category_highlight" => $request-> category_highlight ? 1:0,
+                    "discount" => $request->discount ? 1:0 ,
+                    "user_reviews" => $request->user_reviews?1:0 ,
+                    "adjustable_quantity" => $request->adjustable_quantity?1:0 ,
+                    "nocount" => $request->nocount?1:0 ,
+                    "slug" => $request->slug ,
+                    "seo_title" => $request->seo_title ,
+                    "seo_description" => $request->seo_description ,
+                    "seo_keywords" => $request->seo_keywords ,
+                    "price" => $request-> price,
+                    "hotprice" => $request->hotprice ,
+                    "description" => $request-> description
+                ]);
+       
 
             $documents = [];
             foreach ((array)$request->documents as $doc) {
@@ -89,14 +105,16 @@ class ProductController extends Controller
             $documents_json = json_encode($documents);
             $images_json = json_encode($images);
 
-            Product::findOrFail($product->id)->update([
+          
+
+            $product->update([
                 'document' => $documents_json,
                 'image' => $images_json,
                 'main_image' => json_encode(['title' => '', 'file' => $request->main_image])
             ]);
 
-            return response(['success' => true], 200);
-        }
+            return redirect()->back()->with('message', ['type'=>'success', 'text'=>'Sikeres módosítás!']);;
+         
     }
     
 

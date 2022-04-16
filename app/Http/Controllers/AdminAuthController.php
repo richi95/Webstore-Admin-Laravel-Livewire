@@ -64,7 +64,7 @@ class AdminAuthController extends Controller
         if (Auth::attempt([ 'email' => $request->email, 
                             'password' => $request->password,
                             'is_admin' => 1
-                            ]))
+    ],  $request->has( 'remember' ) ? true : false ))
         { 
             return redirect()->route('admin.dashboard')->with('message', ['type'=>'success', 'text'=>'Sikeres belépés!']);
             
