@@ -39,3 +39,17 @@ function checkImgSelected($prod, $id)
     return $result;
 
 }
+function checkMainImgSelected($prod, $id)
+{
+    $imgvar = json_decode($prod->main_image);
+    $result = array_filter($imgvar, function ($elem) use ($id) {
+
+        if ($elem->id == $id) {
+            return true;
+        }
+        return false;
+    });
+
+    return $result;
+
+}

@@ -9,7 +9,7 @@
     <section class="content-header">
       <div class="container-fluid">
 
-        @include("admin.includes.message");
+        @include("admin.includes.message")
 
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -161,7 +161,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Mentés</button>
                 </div>
               </form>
             </div>

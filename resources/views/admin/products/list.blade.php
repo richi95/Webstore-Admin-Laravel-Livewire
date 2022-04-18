@@ -76,7 +76,7 @@
                                                             href="{{ route('admin.products.edit', [
                                                                 'product' => $pr,
                                                             ]) }}">Szerkesztés</a>
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        <button type="submit" class="btn btn-danger">Törlés</button>
                                                     </td>
                                                 </form>
 
