@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/adminfiles/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminfiles/dist/css/adminlte.min.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    @livewireStyles
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -228,9 +230,9 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                                        <!-- Add icons to the links using the .nav-icon class
+                        <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
-                                        {{-- <li class="nav-item menu-open">
+                        {{-- <li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
@@ -260,7 +262,20 @@
                             </ul>
                         </li> --}}
 
-                        <li class="text-center">Tartalom</li>
+
+
+                        <li class="nav-item"><p>{{__('Tartalom')}}</p></li>
+                        
+                        <li class="nav-item" id="#">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    {{ __('Vezérlőpult') }}
+                                    {{-- <i class="fas fa-angle-left right"></i> --}}
+                                    {{-- <span class="badge badge-info right">6</span> --}}
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-item" id="categoriesmenu">
                             <a href="#" class="nav-link">
@@ -386,7 +401,43 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <li class="nav-item" id="#">
+                            <a href="#" class="nav-link">
+                                <i class=" nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    {{ __('Vásárlások') }}
+                                    <i class="fas fa-angle-left right"></i>
+                                    {{-- <span class="badge badge-info right">6</span> --}}
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+                                        <p>Felvétel</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-list nav-icon"></i>
+                                        <p>Listázás</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" id="#">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tags"></i>
+                                <p>
+                                    {{ __('Ajánlatok') }}
+                                    {{-- <span class="badge badge-info right">6</span> --}}
+                                </p>
+                            </a>
+                           <br>
+                        </li>
+                        <li class="nav-item">
+                            <p>{{__('Rendszer')}}</p>
+                        </li>
                         <li class="nav-item" id="settingsmenu">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-wrench"></i>
@@ -436,11 +487,10 @@
             <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
 
+        <!-- Content Wrapper. Contains page content -->
         @yield('content')
         <!-- /.content-wrapper -->
-
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
@@ -494,6 +544,7 @@
         </script>
     @endisset
 
+    @livewireScripts
 </body>
 
 </html>

@@ -10,6 +10,7 @@ Route::get('/products/add', function () {
 
     return view('admin.products.add', [
         'item' => '',
+        'openmenu' => '#productsmenu',
         'images' => Image::all(),
         'docs' => Document::orderBy('title')->get()
     ]);
@@ -17,6 +18,7 @@ Route::get('/products/add', function () {
 
 Route::get('/products/edit/{product}', function (Product $product) {
     return view('admin.products.edit', [
+        'openmenu' => '#productsmenu',
         'products' => $product,
         'images' => Image::orderBy('title')->get(),
         'docs' => Document::orderBy('title')->get()
