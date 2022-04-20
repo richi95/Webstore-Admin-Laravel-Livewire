@@ -122,11 +122,17 @@
                                             <div class="py-2">
 
                                                 {{-- {{$dc->id}} --}}
+<<<<<<< HEAD
                                               
                                                 <input type="radio" {{ checkMainImgSelected( $products, $img->id )== true ? 'checked' : ''}} id="main_image_{{$img->id}}" name="main_image" value="{{$img->id}}"  > <label label="main_image_{{$img->id}}" >kezdőkép</label> | 
                                                 <input type="checkbox" {{ checkImgSelected( $products, $img->id )== true ? 'checked' : ''}}  value="{{$img->id}}" id="image-{{$img->id}}" name="images[]">
 
+=======
+                                               <input type="checkbox" {{ checkImgSelected( $products, $img->id )== true ? 'checked' : ''}}  value="{{$img->id}}" id="image-{{$img->id}}" name="images[]">
+                                               
+>>>>>>> 9f8f433de33eb8dc583d64236b292d7c62a12307
                                                <label class="form-check-label" for="image-{{$img->id}}"><img src="/storage/{{$img->file}}" width="100"></label>
+                                               <input type="radio" id="main_image_{{$img->id}}" name="main_image" value="{{$img->id}}">
                                             </div>   
                                             @endforeach
                                         </div>
@@ -223,7 +229,7 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Mentés</button>
                                 </div>
                             </form>
                         </div>

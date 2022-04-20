@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    function store(Request  $request)
+    function store(Request $request)
     {
 
         $validated = Validator::make($request->all(), [
@@ -24,6 +24,7 @@ class ProductController extends Controller
             'seo_description' => 'nullable|min:2|max:200',
             'price' => 'required',
             'hotprice' => 'nullable',
+            'description' => 'nullable'
         ]);
 
         if ($validated->fails())
@@ -57,7 +58,6 @@ class ProductController extends Controller
     }
     function edit(Product $product, Request  $request)
     {
- 
         $request->validate([
             'category_id' => 'required',
             'name' => 'required|min:2|max:60',
@@ -100,17 +100,20 @@ class ProductController extends Controller
             foreach ((array)$request->images as $img) {
                 $images[] = Image::find($img);
             }
+           
 
-
+            
             $documents_json = json_encode($documents);
             $images_json = json_encode($images);
-
-          
 
             $product->update([
                 'document' => $documents_json,
                 'image' => $images_json,
+<<<<<<< HEAD
                 'main_image' => json_encode( Image::find( $request->main_image ) )
+=======
+                'main_image' => json_encode([Image::find($request->main_image)])
+>>>>>>> 9f8f433de33eb8dc583d64236b292d7c62a12307
             ]);
 
             return redirect()->back()->with('message', ['type'=>'success', 'text'=>'Sikeres módosítás!']);;

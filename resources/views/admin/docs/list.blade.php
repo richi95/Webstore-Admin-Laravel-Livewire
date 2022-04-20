@@ -65,7 +65,7 @@
                                                             href="{{ route('admin.docs.edit-view', [
                                                                 'docs' => $docs->id,
                                                             ]) }}">Szerkesztés</a>
-                                                        <button class="btn btn-danger">X</button>
+                                                        <button class="btn btn-danger">Törlés</button>
                                                     </td>
                                                 </form>
                                             </tr>

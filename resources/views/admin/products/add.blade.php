@@ -4,7 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
-                
+
                 <div class="alert mb-3 alert-success d-none" id="successmessage">Sikeres rögzítés!</div>
 
                 <div class="row mb-2">
@@ -40,7 +40,7 @@
 
                                 <div class="card-body">
 
-                                    
+
                                     {{-- @include('admin.includes.form.select', [
                                         'id' => 'parent_id',
                                         'label' => 'Szülőkategória',
@@ -72,43 +72,45 @@
                                         'params' => null,
                                     ])
                                     {{-- -------------CHECKBOX-------------------- --}}
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-1',
-                                        'name' => 'main_page_highlight',
-                                        'label' => 'Főoldali kiemelés',
-                                        'params' => null,
-                                    ])
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-2',
-                                        'name' => 'category_highlight',
-                                        'label' => 'Kategóriai kiemelés',
-                                        'params' => null,
-                                    ])
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-3',
-                                        'name' => 'discount',
-                                        'label' => 'Akciós',
-                                        'params' => null,
-                                    ])
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-4',
-                                        'name' => 'user_reviews',
-                                        'label' => 'Felhasználói véleményezés',
-                                        'params' => null,
-                                    ])
-                                    {{-- (ezt a rendszer vásárláskor aktualizálja) --}}
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-5',
-                                        'name' => 'adjustable_quantity',
-                                        'label' => 'Beállítható mennyiség',
-                                        'params' => null,
-                                    ])
-                                    @include('admin.includes.form.checkbox', [
-                                        'id' => 'check-6',
-                                        'name' => 'nocount',
-                                        'label' => 'Nem használja a termékmennyiségek nyilvántartását',
-                                        'params' => null,
-                                    ])
+                                    <div class="col-6 documents-container">
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-1',
+                                            'name' => 'main_page_highlight',
+                                            'label' => 'Főoldali kiemelés',
+                                            'params' => null,
+                                        ])
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-2',
+                                            'name' => 'category_highlight',
+                                            'label' => 'Kategóriai kiemelés',
+                                            'params' => null,
+                                        ])
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-3',
+                                            'name' => 'discount',
+                                            'label' => 'Akciós',
+                                            'params' => null,
+                                        ])
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-4',
+                                            'name' => 'user_reviews',
+                                            'label' => 'Felhasználói véleményezés',
+                                            'params' => null,
+                                        ])
+                                        {{-- (ezt a rendszer vásárláskor aktualizálja) --}}
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-5',
+                                            'name' => 'adjustable_quantity',
+                                            'label' => 'Beállítható mennyiség',
+                                            'params' => null,
+                                        ])
+                                        @include('admin.includes.form.checkbox', [
+                                            'id' => 'check-6',
+                                            'name' => 'nocount',
+                                            'label' => 'Nem számol',
+                                            'params' => null,
+                                        ])
+                                    </div>
                                     {{-- -------------/CHECKBOX-------------------- --}}
                                     {{-- KépVálasztó gomb --}}
 
@@ -118,7 +120,7 @@
                                         </div>
 
                                         <div class="col-md-6">
-                                            <div id="product-images">képek</div>
+                                            <div id="product-images"></div>
                                             <input type="hidden" name="main_image" id="main_image" value="">
 
                                             <a href="#" class="btn btn-primary" data-toggle="modal"
@@ -137,12 +139,14 @@
                                             <label class="col">Válasszon dokumentumokat</label>
                                         </div>
 
-                                        <div class="col-md-6 documents-container" >
-                                            @foreach( $docs as $dc )
-                                            <div class="py-2">
-                                               <input type="checkbox"  value="{{$dc->id}}" id="doc-{{$dc->id}}" name="documents[]">
-                                               <label class="form-check-label" for="doc-{{$dc->id}}">{{$dc->title}}</label>
-                                            </div>   
+                                        <div class="col-md-6 documents-container">
+                                            @foreach ($docs as $dc)
+                                                <div class="py-2">
+                                                    <input type="checkbox" value="{{ $dc->id }}"
+                                                        id="doc-{{ $dc->id }}" name="documents[]">
+                                                    <label class="form-check-label"
+                                                        for="doc-{{ $dc->id }}">{{ $dc->title }}</label>
+                                                </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -209,17 +213,16 @@
                                         'id' => 'description',
                                         'label' => 'Leírás',
                                         'placeholder' => 'Leírás',
-                    
                                         'value' => '',
-                                        'params' => " style='height:200px;'",
+                                        'params' => "style='height:200px;'",
                                     ])
 
-                                    
+
                                 </div>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer d-flex justify-content-between">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Mentés</button>
                                     <span class="success"></span>
                                 </div>
                             </form>
@@ -294,61 +297,64 @@
         }
 
         const formelem = document.getElementById('product-store-form');
-      
-        formelem.onsubmit = function(){
+
+        formelem.onsubmit = function() {
 
             const fd = new FormData;
-            
-            document.querySelectorAll('#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select, #product-store-form textarea').forEach(function(formelem){
+
+            document.querySelectorAll(
+                '#product-store-form input[type="text"], #product-store-form input[type="hidden"], #product-store-form input[type="number"], #product-store-form select, #product-store-form textarea'
+                ).forEach(function(formelem) {
                 const name = formelem.name;
                 const value = formelem.value;
 
-                fd.append( name, value );
+                fd.append(name, value);
 
             })
 
-            document.querySelectorAll('#product-store-form input[type="checkbox"]').forEach(function(formelem){
+            document.querySelectorAll('#product-store-form input[type="checkbox"]').forEach(function(formelem) {
 
-                if(formelem.checked){
-                const name = formelem.name;
-                const value = formelem.value;
+                if (formelem.checked) {
+                    const name = formelem.name;
+                    const value = formelem.value;
 
-                fd.append( name, value );
-                }    
+                    fd.append(name, value);
+                }
             })
 
- 
+
 
             console.log(fd);
 
-            fetch( '{{ route('admin.post.products.add') }}', {
+            fetch('{{ route('admin.post.products.add') }}', {
                 method: 'POST',
-                headers: {     
+                headers: {
                     'X-CSRF-TOKEN': '{{ @csrf_token() }}'
                 },
                 body: fd
-            } ).then( result=>result.json() ).then(result=>{
+            }).then(result => result.json()).then(result => {
 
-                document.querySelectorAll('.error').forEach(function(item){
-                    item.innerText=''
-                    document.querySelector('.success').innerText='A termék sikeresen mentésre került!';
-                    document.querySelector('.success').style.pointerEvents='none';
-                    document.querySelector('.success').className='btn btn-success text-left';
+                document.querySelectorAll('.error').forEach(function(item) {
+                    item.innerText = ''
+                    document.querySelector('.success').innerText =
+                    'A termék sikeresen mentésre került!';
+                    document.querySelector('.success').style.pointerEvents = 'none';
+                    document.querySelector('.success').className = 'btn btn-success text-left';
                 })
 
-                if( typeof result.success === 'undefined' ) {
-                
+                if (typeof result.success === 'undefined') {
 
-                for( let error in  result ){
-           
-                    try{
-                    document.querySelector('.error.'+error).innerText=result[error][0]
-                }catch(e){}
+
+                    for (let error in result) {
+
+                        try {
+                            document.querySelector('.error.' + error).innerText = result[error][0]
+                        } catch (e) {}
+                    }
+
+                } else {
+                    document.getElementById('successmessage').classList.remove('d-none');
                 }
-
-            } else {
-                document.getElementById('successmessage').classList.remove('d-none');
-            }
             });
 
             return false;

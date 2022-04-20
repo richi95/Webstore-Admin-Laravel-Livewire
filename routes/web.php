@@ -48,6 +48,8 @@ Route::group(['prefix' => 'admin'], function(){
         include __DIR__.'/admin/docs.php';
         
         include __DIR__.'/admin/products.php';
+        
+        include __DIR__.'/admin/members.php';       
     });
 
 });

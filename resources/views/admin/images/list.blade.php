@@ -64,7 +64,7 @@
                                                             href="{{ route('admin.images.edit-view', [
                                                                 'image' => $img->id,
                                                             ]) }}">Szerkesztés</a>
-                                                        <button class="btn btn-danger">X</button>
+                                                        <button class="btn btn-danger">Törlés</button>
                                                     </td>
                                                 </form>
 

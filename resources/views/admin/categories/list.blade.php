@@ -70,7 +70,7 @@
                                                             href="{{ route('admin.categories.edit', [
                                                                 'category' => $cat->id,
                                                             ]) }}">Szerkesztés</a>
-                                                        <button type="submit" class="btn btn-danger">X</button>
+                                                        <button type="submit" class="btn btn-danger">Törlés</button>
                                                     </td>
                                                 </form>
 
