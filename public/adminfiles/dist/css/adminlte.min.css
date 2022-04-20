@@ -59175,4 +59175,8 @@ ul.nav-treeview > li > a {
   overflow:auto;
 }
 
+.custom-list.active{
+  background-color: rgba(255, 255, 255, 0.1)!important;
+}
+
 /*# sourceMappingURL=adminlte.min.css.map */

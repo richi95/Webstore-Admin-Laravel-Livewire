@@ -120,6 +120,7 @@ class ProductController extends Controller
     function list()
     {
         return view('admin.products.list', [
+            'openmenu' => '#productsmenu',
             'products' => Product::get()
         ]);
     }
