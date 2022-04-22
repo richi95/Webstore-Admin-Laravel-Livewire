@@ -267,7 +267,7 @@
                         <li class="nav-item"><p>{{__('Tartalom')}}</p></li>
                         
                         <li class="nav-item" id="#">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('admin.dashboard')}}" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     {{ __('Vezérlőpult') }}

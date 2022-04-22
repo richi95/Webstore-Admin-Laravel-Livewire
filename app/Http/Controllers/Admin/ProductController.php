@@ -109,11 +109,7 @@ class ProductController extends Controller
             $product->update([
                 'document' => $documents_json,
                 'image' => $images_json,
-<<<<<<< HEAD
-                'main_image' => json_encode( Image::find( $request->main_image ) )
-=======
                 'main_image' => json_encode([Image::find($request->main_image)])
->>>>>>> 9f8f433de33eb8dc583d64236b292d7c62a12307
             ]);
 
             return redirect()->back()->with('message', ['type'=>'success', 'text'=>'Sikeres módosítás!']);;
@@ -135,17 +131,4 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back();
     }
-
-    function cart(){
-        // $_SESSION["cart"][10] = [
-        //     'product'=>Product::find(10),
-        //     'qtty' => 1
-        // ];
-
-        $prod = Product::find(10);
-        $prod->qtty = 1;
-        $prod->subtotal = 1 * $prod->price;
-
-    }
-
 }

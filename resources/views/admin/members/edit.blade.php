@@ -3,15 +3,18 @@
     <div class="content-wrapper">
         <section class="content-header">
             <div class="container-fluid">
+
+                @include('admin.includes.message')
+
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>{{ __('Tagok hozzáadása') }}</h1>
+                        <h1>{{ __('Tagok módosítása') }}</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">{{ __('Vezérlőpult') }}</a></li>
-                            <li class="breadcrumb-item"><a href="#">{{ __('Tagok') }}</a></li>
-                            <li class="breadcrumb-item active">{{ __('Tagok hozzáadása') }}</li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('Vezérlőpult') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.members.list')}}">{{ __('Tagok') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('Tagok módosítása') }}</li>
                         </ol>
                     </div>
                 </div>

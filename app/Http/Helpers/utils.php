@@ -39,13 +39,6 @@ function checkImgSelected($prod, $id)
     return $result;
 
 }
-<<<<<<< HEAD
-
-function checkMainImgSelected( $product, $imgid ){
-    $main_img = json_decode($product->main_image);
-
-        return  $main_img->id == $imgid;
-=======
 function checkMainImgSelected($prod, $id)
 {
     $imgvar = json_decode($prod->main_image);
@@ -59,5 +52,4 @@ function checkMainImgSelected($prod, $id)
 
     return $result;
 
->>>>>>> 9f8f433de33eb8dc583d64236b292d7c62a12307
 }

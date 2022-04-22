@@ -19,4 +19,12 @@ Route::get('/members/list', function(){
     ])->with('users', User::all());
 })->name('admin.members.list');
 
+Route::get('/members/edit/{user}',function(User $user){
+    return view('admin.members.edit', [
+        'user' => $user,
+    ]);
+})->name('admin.members.edit');
+
 Route::post('/members/add', [MembersController::class,'store'])->name('admin.post.members.add');
+
+Route::post('/members/billing/add', [MembersController::class,'billing_store'])->name('admin.post.billing.add');

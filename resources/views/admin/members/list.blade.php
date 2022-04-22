@@ -1,12 +1,31 @@
 @extends('layouts.admin')
 @section('content')
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <section class="content-header">
+            <div class="container-fluid">
+
+                @include('admin.includes.message')
+
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>{{ __('Tagok listázása') }}</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{ __('Vezérlőpult') }}</a></li>
+                            <li class="breadcrumb-item"><a href="#">{{ __('Tagok') }}</a></li>
+                            <li class="breadcrumb-item active">{{ __('Tagok listázása') }}</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Tagok</h3>
 
@@ -32,7 +51,9 @@
                                             <th>Név</th>
                                             <th>Email</th>
                                             <th>Státusz</th>
-                                            <th>Szint</th>
+                                            <th>Létrehozva</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -41,10 +62,12 @@
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td><span class="tag tag-success">Approved</span></td>
-                                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.
+                                                <td style="vertical-align: middle"><span class="dot-{{$user->status}}"></span></td>
+                                                <td>{{ $user->created_at }}</td>
+                                                <td><a class="btn btn-success"
+                                                        href="{{ route('admin.members.edit', ['user' => $user]) }}">Módosít</a>
                                                 </td>
-                                                <td class="d-flex" style="gap:1rem"><a class="btn btn-success" href="#">Módosít</a><a class="btn btn-danger" href="#">Törlés</a></td>
+                                                <td><a class="btn btn-danger" href="#">Törlés</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
