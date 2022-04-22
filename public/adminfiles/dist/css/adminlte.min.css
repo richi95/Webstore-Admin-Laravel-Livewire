@@ -59178,5 +59178,20 @@ ul.nav-treeview > li > a {
 .custom-list.active{
   background-color: rgba(255, 255, 255, 0.1)!important;
 }
+.dot-active{
+  height: 10px;
+  width: 10px;
+  background-color: #37bc9b;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-inactive{
+  height: 10px;
+  width: 10px;
+  background-color: #fc4b4b;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 
 /*# sourceMappingURL=adminlte.min.css.map */
