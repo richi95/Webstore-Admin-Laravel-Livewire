@@ -2,7 +2,7 @@
     <form action="{{ route('admin.post.billing.add') }}" method="POST">
         @csrf
 
-        {{Session::get('current_user_id')}}
+        {{-- {{Session::get('current_user_id')}} --}}
         <div class="card-header" style="border-bottom: 1px solid #fff">
             <h3>Számlázási adatok</h3>
         </div>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-md-5">
                     <input type="text" class="form-control col @error('billing_name') is-invalid @enderror" id="billing_name" name="billing_name"
-                        value="{{ old('billing_name', isset($user->nameOrFirm) ? $user->nameOrFirm : '') }}" autocomplete="off">
+                        value="{{ old('billing_name', isset($user->billing_name) ? $user->billing_name : '') }}">
                     @error('billing_name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -23,12 +23,12 @@
             
             <div class="form-group row">
                 <div class="col-md-3">
-                    <label for="billin_zip" class="col mt-2">Irányítószám<span class="text-danger">*</span></label>
+                    <label for="billing_zip" class="col mt-2">Irányítószám<span class="text-danger">*</span></label>
                 </div>
                 <div class="col-md-5">
-                    <input type="text" class="form-control col @error('billin_zip') is-invalid @enderror" id="billin_zip"
-                        name="billin_zip" value="{{ old('billin_zip', isset($user->billin_zip) ? $user->billin_zip : '') }}">
-                    @error('billin_zip')
+                    <input type="text" class="form-control col @error('billing_zip') is-invalid @enderror" id="billing_zip"
+                        name="billing_zip" value="{{ old('billing_zip', isset($user->billing_zip) ? $user->billing_zip : '') }}">
+                    @error('billing_zip')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

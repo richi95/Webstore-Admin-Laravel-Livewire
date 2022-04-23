@@ -401,6 +401,7 @@
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item" id="#">
                             <a href="#" class="nav-link">
                                 <i class=" nav-icon fas fa-cash-register"></i>
@@ -410,21 +411,8 @@
                                     {{-- <span class="badge badge-info right">6</span> --}}
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>Felvétel</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-list nav-icon"></i>
-                                        <p>Listázás</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
+
                         <li class="nav-item" id="#">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tags"></i>
@@ -435,6 +423,7 @@
                             </a>
                            <br>
                         </li>
+                        
                         <li class="nav-item">
                             <p>{{__('Rendszer')}}</p>
                         </li>

@@ -28,3 +28,4 @@ Route::get('/members/edit/{user}',function(User $user){
 Route::post('/members/add', [MembersController::class,'store'])->name('admin.post.members.add');
 
 Route::post('/members/billing/add', [MembersController::class,'billing_store'])->name('admin.post.billing.add');
+Route::post('/members/shipping/add', [MembersController::class,'shipping_store'])->name('admin.post.shipping.add');

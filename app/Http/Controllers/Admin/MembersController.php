@@ -54,4 +54,23 @@ class MembersController extends Controller
 
         return redirect()->back()->with('message', ['type'=>'success', 'text' => 'Sikeres mentés!']);
     }
+
+    function shipping_store(Request $request){
+
+        if(!$request->session()->get('current_user_id')){
+            return redirect()->back()->with('message', ['type'=>'danger', 'text'=>'Nincs meg a user, előbb hozza létre azt!']);
+        }
+
+        $validated = $request->validate([
+            'shipping_name' => 'required|min:4|max:30',
+            'shipping_zip' => 'digits:4',
+            'shipping_city' => 'required|min:2|max:30',
+            'shipping_address' => 'required|min:2|max:50',
+            'shipping_address2' => 'nullable'
+        ]);
+
+        User::findOrFail($request->session()->get('current_user_id'))->update($validated);
+        $request->session()->flush('current_user_id');
+        return redirect()->back()->with('message', ['type'=>'success', 'text' => 'Sikeres mentés!']);
+    }
 }
