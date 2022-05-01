@@ -112,7 +112,7 @@ class ProductController extends Controller
                 'main_image' => json_encode([Image::find($request->main_image)])
             ]);
 
-            return redirect()->back()->with('message', ['type'=>'success', 'text'=>'Sikeres módosítás!']);;
+            return redirect()->back()->with('message', ['type'=>'success', 'text'=>'Sikeres módosítás!']);
          
     }
     

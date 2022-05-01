@@ -402,12 +402,11 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item" id="#">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{route('admin.purchases')}}" class="nav-link">
                                 <i class=" nav-icon fas fa-cash-register"></i>
                                 <p>
                                     {{ __('Vásárlások') }}
-                                    <i class="fas fa-angle-left right"></i>
                                     {{-- <span class="badge badge-info right">6</span> --}}
                                 </p>
                             </a>
@@ -423,7 +422,7 @@
                             </a>
                            <br>
                         </li>
-                        
+
                         <li class="nav-item">
                             <p>{{__('Rendszer')}}</p>
                         </li>

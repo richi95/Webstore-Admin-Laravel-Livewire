@@ -59192,6 +59192,10 @@ ul.nav-treeview > li > a {
   border-radius: 50%;
   display: inline-block;
 }
-
-
+.custom-tbody td{
+  vertical-align: middle;
+}
+#custom-action>a{
+  margin-right: 0.5rem;
+}
 /*# sourceMappingURL=adminlte.min.css.map */

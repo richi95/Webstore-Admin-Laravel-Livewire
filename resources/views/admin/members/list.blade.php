@@ -56,13 +56,13 @@
                                             <th></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="custom-tbody">
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $user->id }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td style="vertical-align: middle"><span class="dot-{{$user->status}}"></span></td>
+                                                <td><span class="dot-{{$user->status}}"></span></td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td><a class="btn btn-success"
                                                         href="{{ route('admin.members.edit', ['user' => $user]) }}">Módosít</a>
