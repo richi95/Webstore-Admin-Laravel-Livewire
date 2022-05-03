@@ -5,10 +5,10 @@
             <div class="container-fluid">
 
                 @include('admin.includes.message')
-
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1>{{ __('Tagok listázása') }}</h1>
+                        
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">

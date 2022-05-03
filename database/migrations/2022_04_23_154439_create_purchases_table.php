@@ -21,6 +21,7 @@ class CreatePurchasesTable extends Migration
             $table->string('shipping_method');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->string('amount');
+            $table->string('bill');
             $table->timestamps();
         });
     }

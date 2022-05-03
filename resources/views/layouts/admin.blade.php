@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/adminfiles/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminfiles/dist/css/adminlte.min.css">
-    <script src="//unpkg.com/alpinejs" defer></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
     @livewireStyles
 </head>
 
@@ -264,10 +264,12 @@
 
 
 
-                        <li class="nav-item"><p>{{__('Tartalom')}}</p></li>
-                        
+                        <li class="nav-item">
+                            <p>{{ __('Tartalom') }}</p>
+                        </li>
+
                         <li class="nav-item" id="#">
-                            <a href="{{route('admin.dashboard')}}" class="nav-link">
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     {{ __('Vezérlőpult') }}
@@ -403,7 +405,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('admin.purchases')}}" class="nav-link">
+                            <a href="{{ route('admin.purchases') }}" class="nav-link">
                                 <i class=" nav-icon fas fa-cash-register"></i>
                                 <p>
                                     {{ __('Vásárlások') }}
@@ -420,11 +422,11 @@
                                     {{-- <span class="badge badge-info right">6</span> --}}
                                 </p>
                             </a>
-                           <br>
+                            <br>
                         </li>
 
                         <li class="nav-item">
-                            <p>{{__('Rendszer')}}</p>
+                            <p>{{ __('Rendszer') }}</p>
                         </li>
                         <li class="nav-item" id="settingsmenu">
                             <a href="#" class="nav-link">
@@ -466,6 +468,8 @@
                                         <p>Kapcsolat oldal</p>
                                     </a>
                                 </li>
+                                <li>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -474,9 +478,10 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-
-
         <!-- Content Wrapper. Contains page content -->
+
+        {{ $slot }}
+
         @yield('content')
         <!-- /.content-wrapper -->
         <!-- Control Sidebar -->
@@ -497,6 +502,8 @@
     <!-- ./wrapper -->
 
 
+
+    @livewireScripts
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
@@ -531,8 +538,12 @@
             document.querySelector('{{ $openmenu }} > a').classList.add('active');
         </script>
     @endisset
+    <script>
+        window.livewire.on('purchaseUpdated', ()=>{
+            $('#updatePurchaseModal').modal('hide')
+        })
 
-    @livewireScripts
+    </script>
 </body>
 
 </html>

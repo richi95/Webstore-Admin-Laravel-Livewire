@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Livewire\Views\Dashboard;
+use App\Http\Livewire\Views\Purchases;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -19,19 +21,11 @@ use Illuminate\Support\Facades\Session;
 */
 
 Route::group(['prefix' => 'admin'], function(){
-
     Route::get('/', [AdminAuthController::class,'getLogin'])->name('admin.login');
     Route::post('/', [AdminAuthController::class,'postLogin'])->name('admin.post.login');
-
     Route::group(['middleware' => ['adminauth']], function () {
-
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
-        Route::post('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('admin.post.dashboard');
-
+        
+        Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
 
         Route::get('/logout', function(){
             Auth::logout();
@@ -51,7 +45,8 @@ Route::group(['prefix' => 'admin'], function(){
         
         include __DIR__.'/admin/members.php';
 
-        include __DIR__.'/admin/purchases.php';       
+        include __DIR__.'/admin/purchases.php'; 
+        
     });
 
 });
